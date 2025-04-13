@@ -66,6 +66,7 @@ Ejecutamos
 sudo apt update && sudo apt upgrade -y
 ```
 Esto para actualizar los paquetes para asegurarnos de tener la última versión del software y las correcciones de seguridad.
+>Nota: En algunos casos no he necesitado de este comando
 
 ### **Go**
 Obtenemos la última versión de `Go`
@@ -109,7 +110,7 @@ sudo apt-get install graphviz
 dot -V
 ```
 
-Para subir imagenes al S3
+Paquetes utilzados relacionados con el SDK de Amazon Web Services (AWS) para subir imagenes al S3
 ```bash
 go get github.com/aws/aws-sdk-go
 
@@ -119,6 +120,8 @@ go get github.com/aws/aws-sdk-go-v2/service/s3
 ```
 
 ### **React**
+
+Instalación de node, código extraído desde este [Link](https://nodejs.org/en/download)
 ```bash
 # Download and install nvm:
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
@@ -148,20 +151,53 @@ Iniciamos
 npm start
 ```
 
-```json
-"scripts": {
-  "start": "HOST=0.0.0.0 PORT=3000 react-scripts start"
-}
-```
-
+Bibliotecas utilizadas en React:
 ```bash
 npm install react-router-dom
 npm install axios
 
 ```
 
-
-
 ____
 ## **Creación Bucket en S3**
 
+Inicio de la consola de AWS
+<p align="center">
+  <img src="img/S3Paso1.png" alt="Imagen">
+</p>
+
+Buscamos "S3", damos click. Una vez dentro seleccionamos `Crear Bucket`
+<p align="center">
+  <img src="img/S3Paso2.png" alt="Imagen">
+</p>
+
+Seleccionamos `Uso general` para el bucket, le damos un nombre al bucket.
+
+### OJO
+Para **Propiedad de objetos** se debe seleccionar `ACL habilitadas` para más adelante asignar permisos a usuarios/grupos.
+<p align="center">
+  <img src="img/S3Paso3.png" alt="Imagen">
+</p>
+
+Desactivamos las opciones de bloqueo y aceptamos (recuadro amarillo).
+<p align="center">
+  <img src="img/S3Paso4.png" alt="Imagen">
+</p>
+
+Para las demás opciones, selecionamos como en la imagen y en `Crear Bucket`
+<p align="center">
+  <img src="img/S3Paso5.png" alt="Imagen">
+</p>
+
+Una vez creado nos redirigirá al panel de los Buckets existentes
+<p align="center">
+  <img src="img/S3Paso6.png" alt="Imagen">
+</p>
+
+En caso de no haber seleccionado la opción de `ACL habilitadas` solo seleccionamos el bucket y en `Editar la propiedad del objeto` encontraremos la opción para habilitar/deshabilitar.
+<p align="center">
+  <img src="img/S3Paso7.png" alt="Imagen">
+</p>
+
+____
+Para poder acceder al bucket en codigo necesitamos crear un usuario para darle acceso a nuestro bucket (cargar y leer) aquí lo [explico](../ejemplo1/README.md).
